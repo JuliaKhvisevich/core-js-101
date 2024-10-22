@@ -212,8 +212,16 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const top = `┌${'─'.repeat(width - 2)}┐\n`;
+  // Средняя часть (вертикальные линии и пробелы)
+  const middle = `│${' '.repeat(width - 2)}│\n`.repeat(height - 2);
+
+  // Нижняя часть (углы и горизонтальная линия)
+  const bottom = `└${'─'.repeat(width - 2)}┘\n`;
+
+  // Объединяем все части в одну строку
+  return top + middle + bottom;
 }
 
 
@@ -285,10 +293,13 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const spades = `'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'`;
-  const diamonds = `'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦'`;
-  const hearts = `'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥'`;
-  const clubs = `'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣'`;
+  const suitsСards = [
+    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
+  ];
+  return suitsСards.indexOf(value);
 }
 
 
